@@ -257,7 +257,7 @@ sigex.acf <-
 #		      if(s.div %% 2 == 0){
 #		        sar.op = polymult(sar.op, c(1, 1 * rho.s))
 #		      }
-		      trunc.len <- floor(s.period/2)-1
+		      trunc.len <- floor(s.period/2)
 		      if(s.period %% 2 == 0) 
 		      {
 		        sar.op <- ubgenerator(s.period,trunc.len-1,1000,rho.s)
@@ -281,7 +281,7 @@ sigex.acf <-
 #		      if(s.div %% 2 == 0){
 #		        sma.op = polymult(sma.op, c(1, 1 * rho.s))
 #		      }
-		      trunc.len <- floor(s.period/2)-1
+		      trunc.len <- floor(s.period/2)
 		      if(s.period %% 2 == 0) 
 		      {
 		        sma.op <- ubgenerator(s.period,trunc.len-1,1000,rho.s)
