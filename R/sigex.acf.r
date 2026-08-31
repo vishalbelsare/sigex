@@ -266,7 +266,7 @@ sigex.acf <-
 		      {
 		        sar.op <- ubgenerator(s.period,trunc.len,1000,rho.s)
 		      }
-		      ars.coef.stretch <- rbind(ars.coef.stretch,-1*sar.op[-1])
+		      ars.coef.stretch <- rbind(ars.coef.stretch,t(-1*sar.op[-1] %x% diag(N)))
 		    }
 		  }
 		  if(qs.order > 0) # then qs.order = 1 for this model
@@ -290,7 +290,7 @@ sigex.acf <-
 		      {
 		        sma.op <- ubgenerator(s.period,trunc.len,1000,rho.s)
 		      }
-		      mas.coef.stretch <- rbind(mas.coef.stretch,-1*sma.op[-1])
+		      mas.coef.stretch <- rbind(mas.coef.stretch,t(-1*sma.op[-1] %x% diag(N)))
 		    }
 		  }
 
