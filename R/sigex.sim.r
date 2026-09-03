@@ -130,7 +130,8 @@ sigex.sim <- function(psi,mdl,simlen,burnin,dof,init)
 	rhot <- matrix(0,nrow=N,ncol=N)
 	Lam <- x.acf[,1,]
 	Om <- x.acf[,1,]
-	sim <- chol(Lam) %*% matrix(eps[1,],ncol=1)
+#	sim <- chol(Lam) %*% matrix(eps[1,],ncol=1)
+	sim <- t(chol(Lam)) %*% matrix(eps[1,],ncol=1)
 	for(t in 1:(T-2))
 	{
 		gamSeq <- cbind(x.acf[,t+1,],gamSeq)
@@ -139,7 +140,8 @@ sigex.sim <- function(psi,mdl,simlen,burnin,dof,init)
 		Lam <- x.acf[,1,] - gamSeq %*% bseq
 		Om <- x.acf[,1,] - t(aseq) %*% gamFlip
 		alphat <- t(bseq) %*% matrix(sim,ncol=1)
-		new.sim <- chol(Lam) %*% matrix(eps[(t+1),],ncol=1) + alphat
+#		new.sim <- chol(Lam) %*% matrix(eps[(t+1),],ncol=1) + alphat
+		new.sim <- t(chol(Lam)) %*% matrix(eps[(t+1),],ncol=1) + alphat
 		sim <- rbind(sim,new.sim)
 		xit <- x.acf[,t+2,] - rhot
 		bfact <- solve(Om) %*% t(xit)
@@ -152,7 +154,8 @@ sigex.sim <- function(psi,mdl,simlen,burnin,dof,init)
 	gamSeq <- cbind(x.acf[,T,],gamSeq)
 	Lam <- x.acf[,1,] - gamSeq %*% bseq
 	alphat <- t(bseq) %*% matrix(sim,ncol=1)
-	new.sim <- chol(Lam) %*% matrix(eps[T,],ncol=1) + alphat
+#	new.sim <- chol(Lam) %*% matrix(eps[T,],ncol=1) + alphat
+	new.sim <- t(chol(Lam)) %*% matrix(eps[T,],ncol=1) + alphat
 	sim <- rbind(sim,new.sim)
 	sim <- matrix(sim,nrow=N)
 	delta <- sigex.delta(mdl,0)
