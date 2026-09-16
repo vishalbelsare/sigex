@@ -258,10 +258,17 @@ sigex.acf <-
 #		        sar.op = polymult(sar.op, c(1, 1 * rho.s))
 #		      }
 		      trunc.len <- floor(s.period/2)
-		      if(s.period %% 2 == 0) 
-		      {
-		        sar.op <- ubgenerator(s.period,trunc.len-1,1000,rho.s)
-		        sar.op <- polymult(sar.op,c(1,rho.s))
+#		      if(s.period %% 2 == 0) 
+#		      {
+#		        sar.op <- ubgenerator(s.period,trunc.len-1,1000,rho.s)
+#		        sar.op <- polymult(sar.op,c(1,rho.s))
+#		      } else
+#		      {
+#		        sar.op <- ubgenerator(s.period,trunc.len,1000,rho.s)
+#		      }
+		      if(floor(s.period) %% 2 == 0) 
+		      { 
+		        sar.op <- polymult(c(1,rho.s),ubgenerator(s.period,trunc.len-1,1000,rho.s))
 		      } else
 		      {
 		        sar.op <- ubgenerator(s.period,trunc.len,1000,rho.s)
@@ -282,10 +289,17 @@ sigex.acf <-
 #		        sma.op = polymult(sma.op, c(1, 1 * rho.s))
 #		      }
 		      trunc.len <- floor(s.period/2)
-		      if(s.period %% 2 == 0) 
-		      {
-		        sma.op <- ubgenerator(s.period,trunc.len-1,1000,rho.s)
-		        sma.op <- polymult(sma.op,c(1,rho.s))
+#		      if(s.period %% 2 == 0) 
+#		      {
+#		        sma.op <- ubgenerator(s.period,trunc.len-1,1000,rho.s)
+#		        sma.op <- polymult(sma.op,c(1,rho.s))
+#		      } else
+#		      {
+#		        sma.op <- ubgenerator(s.period,trunc.len,1000,rho.s)
+#		      }
+		      if(floor(s.period) %% 2 == 0) 
+		      { 
+		        sma.op <- polymult(c(1,rho.s),ubgenerator(s.period,trunc.len-1,1000,rho.s))
 		      } else
 		      {
 		        sma.op <- ubgenerator(s.period,trunc.len,1000,rho.s)
